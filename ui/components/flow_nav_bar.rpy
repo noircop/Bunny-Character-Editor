@@ -19,8 +19,8 @@ screen bce_flow_navigation():
 screen bce_flow_prev_button():
     imagebutton:
         style "bce_flow_nav_button"
-        idle Transform(BCE_UI_COMPONENTS + "bce_flow_nav_prev_btn.png", size=(100,50))
-        hover Transform(BCE_UI_COMPONENTS + "bce_flow_nav_prev_btn_active.png", size=(100, 50))
+        idle Transform(BCE_UI_COMPONENTS + bce_t_img("bce_flow_nav_prev_btn.png"), size=(100,50))
+        hover Transform(BCE_UI_COMPONENTS + bce_t_img("bce_flow_nav_prev_btn_active.png"), size=(100, 50))
 
         action Function(flow_controller.prev)
 
@@ -30,8 +30,8 @@ screen bce_flow_prev_button():
 screen bce_flow_next_button():
     imagebutton:
         style "bce_flow_nav_button"
-        idle Transform(BCE_UI_COMPONENTS + "bce_flow_nav_next_btn.png", size=(100, 50))
-        hover Transform(BCE_UI_COMPONENTS + "bce_flow_nav_next_btn_active.png", size=(100, 50))
+        idle Transform(BCE_UI_COMPONENTS + bce_t_img("bce_flow_nav_next_btn.png"), size=(100, 50))
+        hover Transform(BCE_UI_COMPONENTS + bce_t_img("bce_flow_nav_next_btn_active.png"), size=(100, 50))
 
         action Function(flow_controller.next)
 

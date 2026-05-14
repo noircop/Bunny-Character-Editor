@@ -45,7 +45,7 @@ screen bce_character_name_input():
     vbox:
         spacing 10
 
-        text "Введите имя:" style "bce_input_title"
+        text bce_t("name_placeholder") style "bce_input_title"
         
         frame:
             style "bce_input_background"
@@ -65,8 +65,8 @@ screen bce_character_color_grid():
         vbox:
             spacing 10
 
-            text "Выберите цвет:" style "bce_input_title"
-
+            text bce_t("name_color") style "bce_input_title"
+            
             grid 4 2:
                 spacing 10
 

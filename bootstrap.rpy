@@ -12,27 +12,27 @@ init python early:
             "screen": "bce_element_grid",
             "type": "customization",
             "layer": "face",
-            "title": "Лицо",
+            "title_key": "step_face",
         },
         {
             "id": "hair",
             "screen": "bce_element_grid",
             "type": "customization",
             "layer": "hair",
-            "title": "Прическа",
+            "title_key": "step_hair",
         },
         {
             "id": "suit",
             "screen": "bce_element_grid",
             "type": "customization",
             "layer": "suit",
-            "title": "Одежда",
+            "title_key": "step_suit",
         },
         {
             "id": "final",
             "screen": "bce_character_name",
             "type": "final",
-            "title": "Завершение",
+            "title_key": "step_final",
         }
     ]
 

@@ -11,13 +11,12 @@ screen bce_gender_choice_menu():
     vbox:
         style "bce_choice_menu"
 
-        text "Выберите Пол" style "bce_gender_choice_title"
+        text bce_t("choose_gender") style "bce_gender_choice_title"
 
-        # Ладно хуй с вами будем потом ебаться на отображении в preview
-        textbutton "Мужской":
+        textbutton bce_t("male"):
             style "bce_choice_menu_button"
             action Function(character_service.set_gender, "male"), Function(flow_controller.start)
 
-        textbutton "Женский":
+        textbutton bce_t("female"):
             style "bce_choice_menu_button"
             action Function(character_service.set_gender, "female"), Function(flow_controller.start)

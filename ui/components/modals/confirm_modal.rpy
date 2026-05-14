@@ -13,20 +13,18 @@ screen bce_confirm_window():
             xfill True
             yfill True
                         
-            text "Сохранить изменения?" style "bce_error_title"
+            text bce_t("confirm_save") style "bce_error_title"
 
             hbox:
                 spacing 20
                 align (0.5, 0.5)
 
-                textbutton "Да":
-                    text_style "bce_confirm_button_text"
+                textbutton bce_t("confirm_yes"):
                     action [
                         Function(character_service.apply_to_game),
                         Function(flow_controller.reset),
                         Hide("bce_confirm_window")
                     ]
 
-                textbutton "Нет":
-                    text_style  "bce_confirm_button_text"
+                textbutton bce_t("confirm_no"):
                     action Hide("bce_confirm_window")

@@ -15,8 +15,8 @@ screen bce_element_grid(cols=3, spacing=26):
             if not items:
 
                 $error = {
-                    "title": "А у нас технические шоколадки ;)",
-                    "text": "Произошли технические шоколадки, мы над этим работаем. :("
+                    "title_key": "tech_error_title",
+                    "text_key": "tech_error_text"
                 }
                 
                 use bce_error_window(error["title"], error["text"])

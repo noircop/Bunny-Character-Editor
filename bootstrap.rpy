@@ -4,7 +4,9 @@ init python early:
     from modules.bunny_character_editor import FlowController
     from modules.bunny_character_editor import CharacterModel
     from modules.bunny_character_editor import CharacterService
+    from modules.bunny_character_editor import CharacterValidator
     from modules.bunny_character_editor import ImageLoader
+    
 
     steps_list = [
         {
@@ -38,7 +40,12 @@ init python early:
 
     store.flow_controller = FlowController(steps_list)
     store.character_model = CharacterModel()
-    store.character_service = CharacterService(store.character_model)
+    store.character_validator = CharacterValidator(store.character_model)
+
+    store.character_service = CharacterService(
+        store.character_model,
+        store.character_validator
+    )
 
     # Хардкод, костыль на рефакторинге надо будет убирать. ВРЕМЕНИ НЕТ!
     store.image_loader = ImageLoader(

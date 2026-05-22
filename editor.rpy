@@ -12,8 +12,13 @@ screen bce_editor_main_screen():
         else:
             $ step = flow_controller.current
 
+            $ translation = bce_t(step.get("title_key", ""))
+
             use bce_two_column_shell(
-                title=step.get("title", ""),
+                title=translation,
                 left_screen=step["screen"],
                 right_screen="bce_character_preview"
             )
+        
+        if flow_controller.finished:
+            timer 0.01 action Return()

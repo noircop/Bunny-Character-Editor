@@ -4,9 +4,9 @@
 style bce_error_window:
     xalign 0.5 
     yalign 0.5
-        
-    xfill True
-    yfill True
+
+    xmaximum 500
+    yminimum 200
 
     background BCE_PANEL
 

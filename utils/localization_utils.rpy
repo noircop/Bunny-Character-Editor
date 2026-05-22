@@ -67,15 +67,68 @@ init python:
 
 
 
-    # Модальное окно - Технические Шоколадки
+    # Технические Шоколадки - Неизвестные Ошибки
     bce_translations["ru"].update({
-        "tech_error_title": "А у нас технические шоколадки ;)",
-        "tech_error_text": "Произошли технические шоколадки, мы над этим работаем. :("
+        "error_unknown_title": "А у нас технические шоколадки ;)",
+        "error_unknown_text": "Произошли технические шоколадки, мы над этим работаем. :("
     })
 
     bce_translations["en"].update({
-        "tech_error_title": "Sorry, we have technical hiccups ;)",
-        "tech_error_text": "Some technical hiccups occurred, we are working on it. :("
+        "error_unknown_title": "Sorry, we have technical hiccups ;)",
+        "error_unknown_text": "Some technical hiccups occurred, we are working on it. :("
+    })
+
+    # Ошибки
+    bce_translations["ru"].update({
+        # Face
+        "error_face_missing_title": "Ошибка - Лицо",
+        "error_face_missing_text": "Вы не выбрали лицо",
+
+        # Hair
+        "error_hair_missing_title": "Ошибка - Волосы",
+        "error_hair_missing_text": "Вы не выбрали прическу",
+
+        # Suit
+        "error_suit_missing_title": "Ошибка - Одежда",
+        "error_suit_missing_text": "Вы не выбрали одежду",
+
+        # Name empty
+        "error_name_empty_title": "Ошибка - Пустое имя",
+        "error_name_empty_text": "Имя не может быть пустым",
+
+        # Name too short
+        "error_name_too_short_title": "Ошибка - Короткое имя",
+        "error_name_too_short_text": "Имя слишком короткое",
+
+        # Name banned
+        "error_name_banned_title": "Ошибка — Имя отклонено",
+        "error_name_banned_text": "Мы уже видели достаточно подобных имен"
+    })
+
+    bce_translations["en"].update({
+        # Face
+        "error_face_missing_title": "Error - Face",
+        "error_face_missing_text": "You did not select a face",
+
+        # Hair
+        "error_hair_missing_title": "Error - Hair",
+        "error_hair_missing_text": "You did not select a hairstyle",
+
+        # Suit
+        "error_suit_missing_title": "Error - Outfit",
+        "error_suit_missing_text": "You did not select an outfit",
+
+        # Name empty
+        "error_name_empty_title": "Error - Empty name",
+        "error_name_empty_text": "Name cannot be empty",
+
+        # Name too short
+        "error_name_too_short_title": "Error - Short name",
+        "error_name_too_short_text": "Name is too short",
+
+        # Name banned
+        "error_name_banned_title": "Error - Name rejected",
+        "error_name_banned_text": "We've seen enough of this type of input" 
     })
 
     # 1. Логика

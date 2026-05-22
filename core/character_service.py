@@ -1,9 +1,11 @@
 from renpy.store import store
 from modules.bunny_character_editor.core.character_model import CharacterModel
+from modules.bunny_character_editor.core.character_validator import CharacterValidator
 
 class CharacterService:
-    def __init__(self, model: CharacterModel):
+    def __init__(self, model: CharacterModel, validator: CharacterValidator):
         self.model = model
+        self.validator = validator
 
     # Пол 
     def set_gender(self, gender):
@@ -31,11 +33,11 @@ class CharacterService:
         return self.model.to_dict()
 
     def apply_to_game(self):
-        if not self.model.is_complete():
+
+        if not self.validator.validate():
             return False
 
-        data = self.export()
-        store.bce_custom_character = data
+        store.bce_custom_character = self.export()
         self.model.reset_all()
 
         return True

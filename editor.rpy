@@ -6,11 +6,11 @@ screen bce_editor_main_screen():
 
     use bce_layout():
 
-        if not flow_controller.started:
+        if not editor.started:
             use bce_gender_choice_window()
 
         else:
-            $ step = flow_controller.current
+            $ step = editor.current_step
 
             $ translation = bce_t(step.get("title_key", ""))
 
@@ -20,5 +20,5 @@ screen bce_editor_main_screen():
                 right_screen="bce_character_preview"
             )
         
-        if flow_controller.finished:
+        if editor.finished:
             timer 0.01 action Return()

@@ -5,16 +5,21 @@ class FlowController(object):
         self.current_step = 0
 
         self.started = False
+        self.finished = False
 
     # Жизненый Цикл
     def start(self):
         self.started = True
-        self.exited = False
+        self.finished = False
         self.current_step = 0
+
+    def finish(self):
+        self.finished = True
 
     def reset(self):
         self.current_step = 0
         self.started = False
+        self.finished = False
 
     # Состояние
     @property
@@ -48,9 +53,9 @@ class FlowController(object):
         if 0 <= index < self.step_count:
             self.current_step = index
 
-    # Хэлперы для UI
-    def can_next(self):
-        return not self.is_last
-
-    def can_prev(self):
-        return not self.is_first
+    def go_to_step_by_id(self, step_id):
+        for i, step in enumerate(self.steps_list):
+            if step["id"] == step_id:
+                self.current_step = i
+                return True
+        return False

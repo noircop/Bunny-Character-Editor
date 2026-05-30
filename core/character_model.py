@@ -45,17 +45,6 @@ class CharacterModel:
         self.name_color = color
 
 
-    def is_complete(self) -> bool:
-        """Полностью ли создан персонаж"""
-        return all([
-            self.gender,
-            self.face,
-            self.hair,
-            self.suit,
-            self.name
-        ])
-
-
     # Сериализация (Для Сохранения)
     def to_dict(self) -> dict:
         return {

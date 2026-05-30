@@ -20,11 +20,7 @@ screen bce_confirm_window():
                 align (0.5, 0.5)
 
                 textbutton bce_t("confirm_yes"):
-                    action [
-                        Function(character_service.apply_to_game),
-                        Function(flow_controller.reset),
-                        Hide("bce_confirm_window")
-                    ]
+                    action Function(confirm_save)
 
                 textbutton bce_t("confirm_no"):
                     action Hide("bce_confirm_window")

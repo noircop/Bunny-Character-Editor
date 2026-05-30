@@ -2,8 +2,7 @@
 screen bce_element_grid(cols=3, spacing=26):
     style_prefix "bce"
 
-    $ step = flow_controller.current
-    $ items = image_loader.get_items(step.get("layer"), character_model.gender)
+    $ items = editor.get_current_assets()
 
     viewport:
         style "bce_element_viewport"
@@ -11,15 +10,22 @@ screen bce_element_grid(cols=3, spacing=26):
         mousewheel True
         draggable True
 
+        # vbox:
+        #     vpgrid:
+        #         cols cols
+        #         spacing spacing
+
+        #         for item in items:
+        #             use bce_grid_item(
+        #                 item,
+        #                 editor.is_selected_item(item)
+        #             )
+
+
         vbox:
             if not items:
 
-                $error = {
-                    "title_key": "tech_error_title",
-                    "text_key": "tech_error_text"
-                }
-                
-                use bce_error_window(error["title"], error["text"])
+                text "Ты думал здесь что-то будет ?" style "bce_p"
 
             else:
                 vpgrid:
@@ -27,16 +33,17 @@ screen bce_element_grid(cols=3, spacing=26):
                     spacing spacing
 
                     for item in items:
-                        $ selected = is_selected_item(item)
-                        
-                        use bce_grid_item(item, selected)
+                        use bce_grid_item(
+                            item,
+                            editor.is_selected_item(item)
+                        )
 
 
 # Элемент
 screen bce_grid_item(item, selected=False):
 
-    $ step = flow_controller.current
-    $ gender = character_model.gender
+    $ step = editor.current_step
+    $ gender = editor.character_gender
     $ img = item["path"]
 
     $ is_suit = step.get("layer") == "suit"
@@ -45,8 +52,8 @@ screen bce_grid_item(item, selected=False):
     button:
         style "bce_grid_item_button"
         selected selected
-        # Ах ты Сучка Ебливая Action
-        action Function(apply_character_change, item)
+
+        action Function(editor.apply_character_change, item)
 
         if is_face_or_hair:
 

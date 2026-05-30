@@ -4,10 +4,7 @@ screen bce_confirm_button():
         style "bce_save_button"
         idle Transform(BCE_UI_COMPONENTS + bce_t_img("bce_save_btn.png"), size=(160, 80))
         hover Transform(BCE_UI_COMPONENTS + bce_t_img("bce_save_btn_active.png"), size=(160, 80))
-        action [
-            Hide("bce_confirm_window"),
-            Show("bce_confirm_window")
-        ]
+        action Show("bce_confirm_window")
 
 # Кнопка Переключения Языка
 # ARCH 0.2 добавить локализацию UI как полноценную настройку в меню самого редактора.

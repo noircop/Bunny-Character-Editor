@@ -8,16 +8,17 @@ screen bce_character_preview():
 screen bce_character_sprite():
 
     fixed:
-        $ layers = get_character_layers(character_model)
+    
+        $ layers = editor.get_character_layers()
 
         style "bce_preview_sprite_size"
 
         if layers:
             for layer in layers:
-                add layer at bce_preview_sprite_layer
+                add Image(layer) at bce_preview_sprite_layer
         else:
-        # Заглушка
-            add BCE_CHAR_PATH + "char_test.png" at bce_preview_sprite_layer
+            # Заглушка
+            add Image(BCE_CHAR_PATH + "char_test.png") at bce_preview_sprite_layer
 
 transform bce_preview_sprite_layer:
     xalign 0.5

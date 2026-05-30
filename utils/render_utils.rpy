@@ -1,4 +1,7 @@
 init python:
+
+    # ARCH 0.2 Пока не появится Сохранение Персонажи в виде JSON, или готовых спрайтов. Не трогать Воообще.
+
     def get_character_image(char):
         if not char:
             return "images/character/default.png"
@@ -24,3 +27,5 @@ init python:
             (0, 0),
             f"modules/bunny_character_editor/assets/character/suit/{gender}/{suit}.png",
         )
+    
+    

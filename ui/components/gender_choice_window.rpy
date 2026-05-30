@@ -15,8 +15,8 @@ screen bce_gender_choice_menu():
 
         textbutton bce_t("male"):
             style "bce_choice_menu_button"
-            action Function(character_service.set_gender, "male"), Function(flow_controller.start)
+            action Function(editor.choice_gender_and_start, "male")
 
         textbutton bce_t("female"):
             style "bce_choice_menu_button"
-            action Function(character_service.set_gender, "female"), Function(flow_controller.start)
+            action Function(editor.choice_gender_and_start, "female")

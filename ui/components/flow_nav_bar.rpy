@@ -7,12 +7,12 @@ screen bce_flow_navigation():
         hbox:
             style "bce_flow_nav_inner"
 
-            if not flow_controller.is_first:
+            if editor.step_can_prev:
                 use bce_flow_prev_button()
 
-            use bce_flow_dots(flow_controller.current_step, flow_controller.step_count)
+            use bce_flow_dots(editor.step_index, editor.step_count)
 
-            if not flow_controller.is_last:
+            if editor.step_can_next:
                 use bce_flow_next_button()
 
 # Кнопка Назад Навигации
@@ -22,9 +22,9 @@ screen bce_flow_prev_button():
         idle Transform(BCE_UI_COMPONENTS + bce_t_img("bce_flow_nav_prev_btn.png"), size=(100,50))
         hover Transform(BCE_UI_COMPONENTS + bce_t_img("bce_flow_nav_prev_btn_active.png"), size=(100, 50))
 
-        action Function(flow_controller.prev)
+        action Function(editor.step_prev)
 
-        sensitive flow_controller.can_prev()
+        sensitive editor.step_can_prev
 
 # Кнопка Вперед Навигации
 screen bce_flow_next_button():
@@ -33,9 +33,9 @@ screen bce_flow_next_button():
         idle Transform(BCE_UI_COMPONENTS + bce_t_img("bce_flow_nav_next_btn.png"), size=(100, 50))
         hover Transform(BCE_UI_COMPONENTS + bce_t_img("bce_flow_nav_next_btn_active.png"), size=(100, 50))
 
-        action Function(flow_controller.next)
+        action Function(editor.step_next)
 
-        sensitive flow_controller.can_next()
+        sensitive editor.step_can_next
 
 #Шаги навигации
 screen bce_flow_dots(current, total):
@@ -63,7 +63,7 @@ screen bce_flow_dots(current, total):
                 else:
                     idle dot_idle
                     hover dot_idle
-                    action Function(flow_controller.go_to, i)
+                    action Function(editor.step_go_to, i)
                     sensitive True
 
 transform flow_nav_dot(size = 50):

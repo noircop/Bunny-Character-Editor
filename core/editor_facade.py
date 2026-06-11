@@ -2,12 +2,15 @@ from renpy.store import store
 
 class EditorFacade:
 
-    def __init__(self, model, service, validator, flow, image_loader):
-        self.model = model
-        self.service = service
-        self.validator = validator
-        self.flow = flow
-        self.image_loader = image_loader
+    def __init__(self, context):
+
+        self.context = context
+
+        self.model = context.model
+        self.service = context.service
+        self.validator = context.validator
+        self.flow = context.flow
+        self.image_loader = context.image_loader
 
         # dispatch выбор активного элемента внешности
         self._dispatch = {
@@ -35,14 +38,23 @@ class EditorFacade:
     def step_index(self):
         return self.flow.current_step
 
+
     @property
     def step_can_next(self):
         return not self.flow.is_last
 
-
     @property
     def step_can_prev(self):
         return not self.flow.is_first
+    
+    @property
+    def step_is_last(self):
+        return self.flow.is_last
+
+
+    @property
+    def step_is_first(self):
+        return self.flow.is_first
 
     @property
     def step_count(self):
@@ -64,7 +76,14 @@ class EditorFacade:
     def finish(self):
         self.flow.finish()
     
+    def reset(self):
+        self.flow.reset()
+        
     # Character
+    @property
+    def character_model(self):
+        return self.model
+
     @property
     def character_gender(self):
         return self.model.gender
@@ -77,8 +96,12 @@ class EditorFacade:
         if fn:
             fn(i)
 
+    # Универсальное обращение к Атрибутам Внешности Персонажа(Читай Модели Персонажа)
     def get_character_attr(self, attr_name, default=None):
         return getattr(self.model, attr_name, default)
+    
+    def set_name_color(self, color):
+        self.service.set_name_color(color)
     
     def is_selected_item(self, item) -> bool:
         if not item:

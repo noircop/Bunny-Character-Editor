@@ -80,6 +80,8 @@ label open_character_editor:
     
     call screen bce_editor_main_screen
 
+    $ editor.reset()
+
     $ quick_menu = True
     window show
 

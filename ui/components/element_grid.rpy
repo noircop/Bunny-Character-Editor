@@ -46,8 +46,7 @@ screen bce_grid_item(item, selected=False):
     $ gender = editor.character_gender
     $ img = item["path"]
 
-    $ is_suit = step.get("layer") == "suit"
-    $ is_face_or_hair = step.get("layer") in ["face", "hair"]
+    $ layer = step.get("layer")
 
     button:
         style "bce_grid_item_button"
@@ -55,22 +54,37 @@ screen bce_grid_item(item, selected=False):
 
         action Function(editor.apply_character_change, item)
 
-        if is_face_or_hair:
+        # ARCH 0.2 Костыль - подумать над системой thumb-изображений   
+        if layer == "face":
+            $ crop = (0, 0, 1200, 700)
+            $ zoom = 0.5
+
+            add Transform(
+                    Image(img),
+                    zoom=zoom,
+                    crop=crop,
+                    xalign=0.5,
+                    yalign=0.5
+                )
+
+        elif layer == "hair":
 
             if gender == "female":
                 $ crop = (0, 0, 1200, 700)
+                $ zoom = 0.27
             else:
                 $ crop = (0, 0, 1200, 600)
+                $ zoom = 0.3
 
             add Transform(
                 Image(img),
-                zoom=BCE_PREVIEW_ZOOM,
+                zoom=zoom,
                 crop=crop,
                 xalign=0.5,
                 yalign=0.5
             )
 
-        elif is_suit:
+        elif layer == "suit":
 
             add Transform(
                 img,

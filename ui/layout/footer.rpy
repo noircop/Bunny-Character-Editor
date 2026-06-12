@@ -8,7 +8,7 @@ screen bce_footer():
             xfill True
             yfill True
 
-            if flow_controller.started:
+            if editor.started:
                 use bce_flow_navigation()
 
             # Правая часть (оставшееся пространство)
@@ -24,7 +24,7 @@ screen bce_footer():
                     null width 0 xfill True
 
                     # Заготовка для взаимодействия с логикой
-                    if flow_controller.is_last:
+                    if editor.step_is_last:
                         use bce_confirm_button()
 
 

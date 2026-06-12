@@ -20,9 +20,9 @@ screen bce_character_name_preview():
             xfill True
             yfill True
 
-            text "[character_model.name or 'Имя Персонажа']":
+            text "[editor.get_character_attr('name') or 'Имя Персонажа']":
                 style "bce_character_name_preview"
-                color character_model.name_color
+                color editor.get_character_attr('name_color')
 
 
 # Форма
@@ -51,8 +51,11 @@ screen bce_character_name_input():
             style "bce_input_background"
 
             input:
-                style "bce_input"
-                value FieldInputValue(character_model, "name")
+                style "bce_input" 
+                value FieldInputValue(
+                    editor.character_model,
+                    "name"
+                )
                 length 20
 
 
@@ -80,10 +83,10 @@ screen bce_character_color_grid():
                         style "bce_color_button"
                         background Solid(c)
 
-                        if character_model.name_color == c:
+                        if editor.get_character_attr("name_color") == c:
                             add Solid("#00000020")
 
                         if "#FFFFFF" == c:
                             add Solid("#FFFFFF40")
 
-                        action Function(character_service.set_name_color, c)
+                        action Function(editor.set_name_color, c)

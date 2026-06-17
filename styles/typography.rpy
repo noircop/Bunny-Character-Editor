@@ -38,7 +38,7 @@ style bce_header_title:
     color BCE_TEXT_LIGHT
     font BCE_FONT_HEADER_SEMIBOLD
     size 38
-    xalign 0.1 
+    xalign 0.3 
     yalign 0.5
 
 style bce_shell_title is bce_h2:
@@ -60,15 +60,14 @@ style bce_choice_menu_button_text:
     hover_color BCE_TEXT_LIGHT 
 
 style bce_error_title is bce_h1:
-    xalign 0.5 
-    yalign 0.5
+    xalign 0.5
     textalign 0.5
 
     color BCE_TEXT_MUTED
 
 style bce_error_text is bce_button_text:
-    xalign 0.5 
-    yalign 0.5
+    xalign 0.5
+    textalign 0.5
     
     color BCE_TEXT
 

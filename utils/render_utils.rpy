@@ -22,10 +22,10 @@ init python:
             f"modules/bunny_character_editor/assets/character/face/{gender}/{face}.png",
 
             (0, 0),
-            f"modules/bunny_character_editor/assets/character/hair/{gender}/{hair}.png",
+            f"modules/bunny_character_editor/assets/character/suit/{gender}/{suit}.png",
 
             (0, 0),
-            f"modules/bunny_character_editor/assets/character/suit/{gender}/{suit}.png",
+            f"modules/bunny_character_editor/assets/character/hair/{gender}/{hair}.png",
         )
     
     

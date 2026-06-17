@@ -5,17 +5,19 @@
 
 ## 🚀 Быстрый Старт
 
-1. В директории проекта на Renpy создайте папку modules/.
-2. В modules/создайте папку bunny_character_editor/ и скопируйте туда исходники
-3. Добавьте в script.rpy код из "2. Запуск Редактора"(Пункт Ниже)
-4. Вызовите call open_character_editor
-5. После вызова редактора  перед label start: объявите заранее:
-        ```renpy
-        default bce_custom_character = {} 
-        ```
-    и  вставьте в скрипт новеллы условие из "Примера использования" это важно.
-6. Получите результат:
-   store.bce_custom_character
+1. Скопируйте папку modules/ в проект Ren'Py
+2. Добавьте label open_character_editor
+3. Объявите:
+
+default bce_custom_character = {}
+
+4. Вызовите:
+
+call open_character_editor
+
+5. Используйте:
+
+store.bce_custom_character
 
 ## Возможности
 
@@ -32,23 +34,35 @@
 ## Структура
 
 modules/bunny_character_editor/
+
+├── assets/         # Спрайты элементов внешнего вида 
+│   ├── character/
+│   └── ui/
 │
-├── core/                  # Логика редактора
+├── core/           # Ядро Редактора
 │   ├── character_model.py
 │   ├── character_service.py
+│   ├── character_validator.py
+│   ├── editor_context.py
+│   ├── editor_facade.py
 │   ├── flow_controller.py
 │   └── image_loader.py
 │
-├── assets/                # Ресурсы
-│   ├── character/         # Спрайты персонажа
-│   └── ui/                # UI элементы
+├── ui/             # Screens - UI
+│   ├── components/
+│   ├── layout/
+│   └── modal/
 │
-├── ui/                     # UI в виде Screens
-│    ├── components/        # Компоненты UI 
-│    └── layout/            # Layout UI - header,footer,layout и оболочка для колонок
-│ 
-├── styles/                # Стили
-└── utils/                 # Утилиты
+├── styles/         # Стили UI
+│
+├── utils/          # Вспомогательные Утилиты
+│   ├── localization_utils.rpy # Будущий класс лол
+│   ├── render_utils.rpy       # Тоже будущий класс лол
+│   └── save_utils.rpy         # А это похоже на React-handler web-лол
+│
+├── bootstrap.rpy
+├── config.rpy
+└── __init__.py
 
 ### 1. Установка
 
@@ -59,10 +73,14 @@ modules/bunny_character_editor/
 Редактор уже инициализируется в `bootstrap.rpy`:
 
 ```python
-store.flow_controller = FlowController(steps_list)
-store.character_model = CharacterModel()
-store.character_service = CharacterService(store.character_model)
-store.image_loader = ImageLoader(...)
+    store.editor_context = EditorContext(
+        steps_list,
+        assets_path
+    )
+
+    store.editor = EditorFacade(
+        store.editor_context
+    )
 ```
 
 ---
@@ -79,8 +97,6 @@ label open_character_editor:
     $ quick_menu = False
     
     call screen bce_editor_main_screen
-
-    $ editor.reset()
 
     $ quick_menu = True
     window show
@@ -137,47 +153,21 @@ player "Я говорю что-то"
 
 ## Архитектура
 
-### 🔹 CharacterModel
-
-Хранит состояние персонажа:
-
-* Пол
-* Лицо
-* Прическа
-* Одежда
-* Имя
-* Цвет имени
-
-
-### 🔹 CharacterService
-
-Слой между UI и моделью:
-
-* изменяет данные
-* валидирует(пока это только в планах)
-* экспортирует результат
-
----
-
-### 🔹 FlowController
-
-Управляет шагами редактора:
-
-* текущий шаг
-* навигация (next / prev)
-* состояние (start / reset)
-
----
-
-### 🔹 ImageLoader
-
-Загружает изображения из файловой системы:
-
-* поддержка категорий
-* фильтрация по полу
-* кеширование
-
----
+                    UI (Screens)
+                        │
+                        ▼
+                 EditorFacade
+                        │
+         ┌──────────────┼──────────────┐
+         │              │              │
+         ▼              ▼              ▼
+ CharacterService  FlowController  ImageLoader
+         │
+         ▼
+ CharacterModel
+         │
+         ▼
+ CharacterValidator
 
 ## 🎨 Добавление новых элементов
 
@@ -244,7 +234,7 @@ get_character_layers()
 Кнопка "Сохранить" вызывает:
 
 ```python
-character_service.apply_to_game()
+editor.apply_to_game()
 ```
 
 Что делает:
@@ -254,16 +244,17 @@ character_service.apply_to_game()
 * сбрасывает модель
 
 ---
+## Roadmap
 
-## Известные проблемы
+## v0.2
 
-* "Костыли" в коде (помечены комментариями)
-* Жестко заданные пути в нескольких местах
-* Нет полноценной валидации UI
-* Нет системы слоев с приоритетами (hair поверх suit и т.д. — вручную)
-* Нет проверки на битые ассеты
-* Функции утилиты как Адаптеры UI
-* Если не выбрать все элементы внешности и не задать имя - персонаж не отобразится. (Там срабатывает тихий Fallback при сохранении)
+- [ ] Система сохранения и экспорта персонажей
+- [ ] Редактирование готового персонажа
+- [ ] Рефакторинг архитектуры
+- [ ] Система управления ассетами (часть движка)
+- [ ] Устранение бутылочного горлышка при работе с ассетами
+- [ ] Выделение логики сборки персонажа
+- [ ] Масштабируемая система локализации
 
 ---
 
